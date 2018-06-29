@@ -1,6 +1,6 @@
 var java = require("java");
 var path = require("path");
-var jarPath = path.join(__dirname, 'lib/ssuio.jar');
+var jarPath = path.join(process.cwd(), './lib/ssuio.jar');
 java.classpath.push(jarPath);
 console.log('start');
 var p1 = getPerson('Mike', 9);
