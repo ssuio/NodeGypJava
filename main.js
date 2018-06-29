@@ -1,7 +1,7 @@
 var java = require("java");
 var path = require("path");
-var ssuioJar = path.join(__dirname, './lib/ssuio.jar');
-java.classpath.push(ssuioJar);
+var jarPath = path.join(__dirname, 'lib/ssuio.jar');
+java.classpath.push(jarPath);
 console.log('start');
 var p1 = getPerson('Mike', 9);
 console.log(p1.fullName('Chou'));
@@ -12,5 +12,5 @@ function getPerson(name, age) {
     return {
         fullName: (lastName) => { return java.callMethodSync(instance, 'fullName', lastName) },
         growth: (num) => { return java.callMethodSync(instance, 'growth', num) }
-    }
+    };
 }

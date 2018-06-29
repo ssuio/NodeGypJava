@@ -11,13 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "java": "^0.10.0",
-    "node-java": "^1.0.1"
+    "node-java": "^1.0.1",
+    "path": "^0.12.7"
   },
   "bin": "./main.js",
   "pkg": {
-    "scripts": "./main.js",
+    "scripts": "main.js",
     "assets": [
-      "lib/ssuio.jar"
+      "lib/**/*"
     ],
     "targets": [
       "node8-win-x64"
