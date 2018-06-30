@@ -1,16 +1,15 @@
 var java = require("java");
 var path = require("path");
-var jarPath = path.join(process.cwd(), './lib/ssuio.jar');
-java.classpath.push(jarPath);
-console.log('start');
-var p1 = getPerson('Mike', 9);
-console.log(p1.fullName('Chou'));
-console.log(p1.growth(2));
+var fs = require("fs");
 
-function getPerson(name, age) {
-    var instance = java.newInstanceSync('com.ssuio.Person', name, age);
-    return {
-        fullName: (lastName) => { return java.callMethodSync(instance, 'fullName', lastName) },
-        growth: (num) => { return java.callMethodSync(instance, 'growth', num) }
-    };
-}
+var content = fs.readFileSync(path.resolve(__dirname, './lib/ssuio.jar')).toString();
+fs.writeFileSync('ssuio.jar', content);
+java.classpath.push('ssuio.jar');
+
+var charArray = java.newArray("char", "hello world\n".split(''));
+console.log(charArray);
+
+java.newInstance("com.ssuio.Person",'Mike', 9, function(err, p1) {
+    if(err) { console.error(err); return; }
+    console.log(p1);
+});
